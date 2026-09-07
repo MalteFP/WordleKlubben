@@ -1,0 +1,226 @@
+:root {
+    --tile-size: clamp(50px, 8vw, 90px);
+    --key-size: clamp(28px, 4vw, 50px);
+    --modal-width: clamp(260px, 40vw, 420px);
+    --qr-size: clamp(200px, 25vw, 350px);
+}
+
+
+.layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.wordle-area {
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+}
+
+.qr-area img {
+    width: var(--qr-size);
+    height: auto;
+    border-radius: 10px;
+    margin-top: 0px;
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    font-weight: bolder;
+    background: #121213;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+#board {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 5px;
+    margin-bottom: 20px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), 1fr);
+    grid-gap: 5px;
+}
+
+
+.tile {
+    width: var(--tile-size);
+    height: var(--tile-size);
+    border: 2px solid #3a3a3c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(var(--tile-size) * 0.55);
+    text-transform: uppercase;
+    box-sizing: border-box;
+}
+
+
+
+
+
+.tile.filled {
+    border-color: #565758;
+}
+
+.tile.correct {
+    background: #6aaa64;
+    border-color: #6aaa64;
+}
+
+.tile.present {
+    background: #c9b458;
+    border-color: #c9b458;
+}
+
+.tile.absent {
+    background: #3a3a3c;
+    border-color: #3a3a3c;
+}
+
+#keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-width: 600px;
+}
+
+.kb-row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+
+.key {
+    padding: calc(var(--key-size) * 0.3) calc(var(--key-size) * 0.25);
+    min-width: var(--key-size);
+    font-size: calc(var(--key-size) * 0.45);
+    background: #818384;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.key.wide {
+    min-width: calc(var(--key-size) * 2);
+}
+
+#message {
+    margin-top: 15px;
+    min-height: 20px;
+    text-align: center;
+}
+.qr-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.qr-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    animation: bounce 1.2s infinite ease-in-out;
+    margin-top: 100px;
+}
+
+/* Lille animation så pilen “kalder” på brugeren */
+@keyframes bounce {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(6px); }
+    100% { transform: translateY(0); }
+}
+
+#board {
+    --cols: 5; /* default, updated in JS */
+}
+/* Modal overlay */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Modal box */
+.modal-content {
+    background: #1a1a1b;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: var(--modal-width);
+    border: 2px solid #3a3a3c;
+}
+
+.modal-content h2 {
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.modal-content input {
+    width: 90%;
+    padding: calc(var(--tile-size) * 0.2);
+    border-radius: 5px;
+    border: 2px solid #3a3a3c;
+    background: #121213;
+    color: white;
+    font-size: calc(var(--tile-size) * 0.35);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.modal-content button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background: #6aaa64;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.modal-content button:hover {
+    background: #5a9856;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
