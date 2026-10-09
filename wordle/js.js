@@ -6,7 +6,7 @@ let cols
 document.addEventListener("DOMContentLoaded", start);
 
 function start() {
-    solution = "FERIE"
+    solution = "LOKAL"
     cols = solution.length
     board.style.setProperty("--cols", cols);
 
