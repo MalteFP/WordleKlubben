@@ -5,6 +5,11 @@
     --qr-size: clamp(200px, 25vw, 350px);
 }
 
+/* Gør at hidden-attributten altid vinder over display: flex osv. */
+[hidden] {
+    display: none !important;
+}
+
 
 .layout {
     display: flex;
@@ -179,23 +184,33 @@ h1 {
     text-align: center;
     width: var(--modal-width);
     border: 2px solid #3a3a3c;
+    box-sizing: border-box;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .modal-content h2 {
+    margin-top: 0;
     margin-bottom: 15px;
     color: #fff;
 }
 
 .modal-content input {
-    width: 90%;
-    padding: calc(var(--tile-size) * 0.2);
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
     border-radius: 5px;
     border: 2px solid #3a3a3c;
     background: #121213;
     color: white;
-    font-size: calc(var(--tile-size) * 0.35);
+    font-size: 1.1rem;
     text-transform: uppercase;
     text-align: center;
+}
+
+.modal-content input:focus {
+    outline: none;
+    border-color: #6aaa64;
 }
 
 .modal-content button {
@@ -213,6 +228,70 @@ h1 {
 
 .modal-content button:hover {
     background: #5a9856;
+}
+
+/* Ordfelter med titel (1.g, 2.g, 3.g) */
+.field {
+    text-align: left;
+    margin-bottom: 12px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 4px;
+    color: #d7dadc;
+}
+
+.error {
+    color: #ff6b6b;
+    min-height: 18px;
+    margin-top: 6px;
+    font-size: 0.9rem;
+}
+
+/* Link-boks efter man har lavet linket */
+#linkBox {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #3a3a3c;
+}
+
+#linkOutput {
+    text-transform: none;
+    font-size: 0.8rem;
+}
+
+/* Vælg 1.g / 2.g / 3.g */
+.choice-row {
+    display: flex;
+    gap: 10px;
+}
+
+.modal-content .choice-btn {
+    margin-top: 0;
+    padding: 20px 0;
+    font-size: 1.4rem;
+}
+
+/* Grå sekundære knapper */
+.secondary-btn,
+.modal-content .secondary-btn {
+    background: #3a3a3c;
+}
+
+.secondary-btn:hover,
+.modal-content .secondary-btn:hover {
+    background: #565758;
+}
+
+#restartBtn {
+    margin-top: 15px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 @keyframes fadeOut {

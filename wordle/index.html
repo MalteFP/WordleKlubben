@@ -2,8 +2,9 @@
 <html lang="da">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dansk Wordle</title>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -13,6 +14,7 @@
         <div id="board"></div>
         <div id="keyboard"></div>
         <div id="message"></div>
+        <button id="restartBtn" class="secondary-btn" hidden>Vælg et andet ord</button>
     </div>
 
     <div class="qr-area">
@@ -21,8 +23,50 @@
         </div>
         <img src="qr.png" alt="QR kode">
     </div>
-    <script src = "js.js"></script>
-    <link rel="stylesheet" href="style.css">
 </div>
+
+<!-- Menu 1: opret 3 ord (vises når der ikke er nogen løsninger i URL'en) -->
+<div id="setupModal" class="modal" hidden>
+    <div class="modal-content">
+        <h2>Lav dine 3 ord</h2>
+
+        <div class="field">
+            <label for="word1">1.g</label>
+            <input id="word1" type="text" maxlength="12" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="field">
+            <label for="word2">2.g</label>
+            <input id="word2" type="text" maxlength="12" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="field">
+            <label for="word3">3.g</label>
+            <input id="word3" type="text" maxlength="12" autocomplete="off" spellcheck="false">
+        </div>
+
+        <div id="setupError" class="error"></div>
+        <button id="createBtn">Lav link</button>
+
+        <div id="linkBox" hidden>
+            <input id="linkOutput" type="text" readonly>
+            <button id="copyBtn">Kopiér link</button>
+            <button id="openBtn" class="secondary-btn">Åbn linket</button>
+        </div>
+    </div>
+</div>
+
+<!-- Menu 2: vælg hvilket ord der skal spilles (vises når URL'en har løsninger) -->
+<div id="chooseModal" class="modal" hidden>
+    <div class="modal-content">
+        <h2>Hvilket ord vil du gætte?</h2>
+        <div class="choice-row">
+            <button class="choice-btn" data-index="0">1.g</button>
+            <button class="choice-btn" data-index="1">2.g</button>
+            <button class="choice-btn" data-index="2">3.g</button>
+        </div>
+        <button id="newWordsBtn" class="secondary-btn">Lav dine egne ord</button>
+    </div>
+</div>
+
+<script src="js.js"></script>
 </body>
 </html>
